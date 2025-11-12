@@ -116,3 +116,5 @@ export class CustomerRepository {
 
 ### We will call the repo from service.So must inject out Repo class in our service class constructor.That why our Repo class is `@Injectable`.
 
+### Fule code : https://github.com/rahmanMunna/documentation-Nestjs/tree/main/setup-typeorm-pgsql/src
+
