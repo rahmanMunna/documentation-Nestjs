@@ -69,18 +69,19 @@ export class CustomerEntity {
 
 ```
 ### Key facts : 
-  - Untill using @Entity() decorator, this class won't consider as an DB Entity.
+  - Untill using `@Entity()` decorator, this class won't consider as an DB Entity.
   - We can give table name via -> @Entity('Table name').
-  - Untill using @Colomn() decorator , that properties won't consider as DB Column.
-  - We can pass an object in @Column() decorator to provide additional information.
+  - If We wont provide the table name into `@Entity()`, our table name will be based our class name. For `CustomerEntity` -> `customer_entity`(table name)
+  - Untill using `@Colomn()` decorator , that properties won't consider as DB Column.
+  - We can pass an object in @Column() decorator to provide additional information for that coloumn or properties.
 
 ### Step - 3 :
-  - Register to module :
+  - Register Entity to module class:
 
 ```.ts
 @Module(
     {
-        imports: [TypeOrmModule.forFeature([CustomerEntity])],
+        imports: [TypeOrmModule.forFeature([CustomerEntity])], // include all entity class into the array
         providers: [CustomerService, CustomerRepository],
         controllers: [CustomerController]
     }
@@ -88,13 +89,13 @@ export class CustomerEntity {
 export class CustomerModule { }
 ```
 ### Key facts : 
-  - import the CustomerEntity.
-  - TypeOrmModule.forFeature() -> this takes an array as parameter.
-  - array will be all entity class.
+  - Import the `CustomerEntity`.
+  - `TypeOrmModule.forFeature(`) -> this takes an array as parameter.
+  - Array will be all entity class.
 
 ### Step - 4 : 
-  - Create an Dedicated Repository class for each Entity.
-  - 
+  - Create an Dedicated Repository class for each Entity and must make it `@Injectable()`
+    
 ```.ts
 @Injectable()
 export class CustomerRepository {
@@ -107,11 +108,11 @@ export class CustomerRepository {
 }
 ```
 ### Key facts : 
-  - must inject the in-built Repository tamplate class in constructor.
+  - must inject the in-built Repository tamplate class `Repository<CustomerEntity>` in constructor.
   - To Inject use `@InjectRepository(EntityName)`
-  - Repository<MyEntityClassName> is a template.
-  - stored the instance to an variable name `customerRepo`.
+  - `Repository<MyEntityClassName>` is a template.
+  - Stored the repo instance to an variable name `customerRepo`.
   - Now we can do any db operation for that entity(table) using `customerRepo` class.
 
-### We will call the repo from service.So must inject out Repo class in our service class constructor.That why our Repo class is @Injectable.
+### We will call the repo from service.So must inject out Repo class in our service class constructor.That why our Repo class is `@Injectable`.
 
