@@ -67,11 +67,12 @@ students: Student[];
 ```
 
 ## TypeORM automatically creates this table:
-student_courses_course
+------------------------
+|student_courses_course |
+|studentId              |
+|courseId               |
+------------------------
 -----------------------
-studentId
-courseId
-
 ✔️ Option 2 — MANUAL Intermediate Table (BEST PRACTICE) : 
 ```
 Student
