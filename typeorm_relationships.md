@@ -88,7 +88,11 @@ order: Order;
 ------------------------------------------------------------------------
 
 ## 🔴 4. MANY-TO-MANY
-
+```
+Courses (many) >-----------< (many) Students
+// need an intermediate table
+Courses (1) --------------< (many) Enrollments (many) >--------------- (1) Students
+```
 In a **Many-to-Many** relationship, a **join table is always required**.
 
 You can handle it in two ways:
